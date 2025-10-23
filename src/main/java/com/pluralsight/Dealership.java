@@ -6,8 +6,9 @@ public class Dealership {
     private String name;
     private String address;
     private String phone;
-
     private ArrayList<Vehicle> inventory;
+
+
     //CONSTRUCTOR
     public Dealership(String name, String address, String phone) {
         this.inventory = new ArrayList<>();
@@ -49,22 +50,44 @@ public class Dealership {
 
     //METHODS
 
-    public void addVehicle(){}
+    //ADD OR REMOVE VEHICLE
+    public void addVehicle(int VIN,int year,String make,String model,String vehicleType,String color,int odometer,double price){
+        //The User has sent the information of the vehicle they would like to add.
+        Vehicle newVehicle = new Vehicle(VIN, year, make, model, vehicleType, color, odometer, price);
+        inventory.add(newVehicle);
+    }
 
+    public void remove(){
+
+    }
+
+
+    //GET VEHICLE BY INFORMATION
     public ArrayList<Vehicle> getAllVehicles(){
         return this.inventory;
     }
 
-    public void remove(){}
-
-
-
     public ArrayList<Vehicle> getVehiclesByPrice(double minPrice, double maxPrice){
 
-      //loop through each vehicle, if it is withing the correct price return the result.
-        for()
+        //loop through each vehicle, if it is withing the correct price return the result.
+        // ask what is the maximum and minimum price you are looking for.
+        //Look at each vehicle in my list,
+        //compare the value of that vehicle to the max and min price
+        //if it's within that range then show me the vehicle.
 
+        //An ArrayList that will store all of our vehicles that match our
+        ArrayList<Vehicle> results = new ArrayList<>();
 
+        for(Vehicle vehicle:inventory){
+
+            //if the vehicle price is less
+            if(vehicle.getPrice() > minPrice && vehicle.getPrice() < maxPrice){
+              //  System.out.println(vehicle);
+                results.add(vehicle);
+            }
+        }
+        //Return the vehicles that are within our range.
+        return results;
     }
 
     public ArrayList<Vehicle> getVehiclesByMakeModel(String make , String model){
