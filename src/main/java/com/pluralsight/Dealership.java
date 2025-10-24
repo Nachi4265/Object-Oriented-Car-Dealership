@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Dealership {
     private String name;
@@ -91,7 +92,14 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesByMakeModel(String make , String model){
-        return null;
+        ArrayList<Vehicle> MakeModelResult = new ArrayList<>();
+
+        for(Vehicle vehicle: inventory){
+            if(Objects.equals(vehicle.getMake(), make) && Objects.equals(vehicle.getModel(), model)){
+                MakeModelResult.add(vehicle);
+            }
+        }
+        return MakeModelResult;
     }
 
     public ArrayList<Vehicle> getVehiclesByYear(String year){

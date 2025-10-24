@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import javax.swing.event.DocumentEvent;
+import java.util.ArrayList;
 
 public class UserInterface {
 
@@ -40,6 +41,8 @@ public class UserInterface {
             9 - Remove a vehicle\n
             99 - Quit
             """;
+
+            System.out.println(mainMenu);
 
             int command = InputCollector.promptForInt("Enter a number command");
 
@@ -89,25 +92,47 @@ public class UserInterface {
     //containing the vehicles to list.  Within the method, create a loop and
     //display the vehicles!
 
-    private void displayVehiclesHelper(Vehicle vehicleToList){
-        for(Vehicle v : this.dealership.getAllVehicles()){}
+    private void displayVehiclesHelper(ArrayList<Vehicle>vehicleToList){
+        for(Vehicle v : vehicleToList){
+            System.out.println(
+                    v.getVIN()
+                    + " | " +v.getYear()
+                    + " | " +v.getMake()
+                    + " | " +v.getModel()
+                    + " | " +v.getVehicleType()
+                    + " | " +v.getColor()
+                    + " | " +v.getOdometer()
+                    + " | " + v.getPrice());
+        }
     }
-
-
 
 
 
     //METHODS TO GET REQUEST FROM USER.
     private void processGetByPriceRequest() {
-       for(Vehicle v : this.dealership.getAllVehicles()){
+        System.out.println("What is the minimum and maximum price?");
+       double minPrice = InputCollector.promptForDouble("Enter minimum price");
+       double maxPrice = InputCollector.promptForDouble("Enter maximum price");
 
-       }
+       ArrayList<Vehicle>vehiclesByPrice = dealership.getVehiclesByPrice(minPrice,maxPrice);
+       displayVehiclesHelper(vehiclesByPrice);
     }
 
     private void processGetByMakeModelRequest() {
+        System.out.println("What is the Make and Model you are looking for?");
+        String make = InputCollector.promptForString("Enter Make");
+        String model = InputCollector.promptForString("Enter Model");
+
+        ArrayList<Vehicle>vehiclesByMakeModel = dealership.getVehiclesByMakeModel(make,model);
+        displayVehiclesHelper(vehiclesByMakeModel);
     }
 
     private void processGetByYearRequest() {
+        System.out.println("What is the year you are looking for?");
+        String year = InputCollector.promptForString("Enter Year (YYYY)");
+
+        ArrayList<Vehicle>vehiclesByYear = dealership.getVehiclesByYear(year);
+        displayVehiclesHelper(vehiclesByYear);
     }
 
     private void processGetByColorRequest() {
