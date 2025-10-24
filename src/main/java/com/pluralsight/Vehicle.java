@@ -92,4 +92,6 @@ public class Vehicle {
         this.price = price;
     }
 
+    //todo: to string
+
 }

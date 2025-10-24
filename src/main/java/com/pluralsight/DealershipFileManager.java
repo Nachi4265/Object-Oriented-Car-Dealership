@@ -17,7 +17,7 @@ public class DealershipFileManager {
     //create and return that dealership
     public Dealership getDealership() {
 
-        Dealership dealership;
+        Dealership dealership = null;
 
         //first lets read from our file
         try {
@@ -35,6 +35,7 @@ public class DealershipFileManager {
             String dealershipPhoneNum = dealershipInfoParts[2];
 
             //Our dealership is made!
+            //Our name , Address and phone number are then passed into it.
             dealership = new Dealership(dealershipName, dealershipAddress, dealershipPhoneNum);
 
 
@@ -59,11 +60,11 @@ public class DealershipFileManager {
                 //Add our vehicle to our inventory
                 dealership.addVehicle(vehicleFromInventory);
 
-                bufferedReader.close();
-            }
 
+            }
+            bufferedReader.close();
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
 
         //return our dealership

@@ -55,9 +55,11 @@ public class Dealership {
         inventory.add(vehicle);
     }
 
-    public void remove(){
-
+    public void remove(Vehicle vehicle){
+        inventory.remove(vehicle);
     }
+
+
 
 
     //GET VEHICLE BY INFORMATION
