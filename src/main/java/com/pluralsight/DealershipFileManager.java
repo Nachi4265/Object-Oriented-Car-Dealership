@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 public class DealershipFileManager {
 
@@ -14,22 +15,35 @@ public class DealershipFileManager {
 
     //Read from a file and turn our text into vehicles that are added to a dealership
     //create and return that dealership
-    public Dealership getDealership(){
+    public Dealership getDealership() {
+
+        Dealership dealership;
 
         //first lets read from our file
-        try{
+        try {
             FileReader fileReader = new FileReader("inventory.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            //Skip our first line which is the dealership information
-            bufferedReader.readLine();
 
+            //Read the first line of my file and make a dealership from it.
             String readLineFromFile;
-            //Now we need to loop through each line of our file
-            while((readLineFromFile = bufferedReader.readLine()) !=null){
+            readLineFromFile = bufferedReader.readLine();
+
+            String[] dealershipInfoParts = readLineFromFile.split("\\|");
+            String dealershipName = dealershipInfoParts[0];
+            String dealershipAddress = dealershipInfoParts[1];
+            String dealershipPhoneNum = dealershipInfoParts[2];
+
+            //Our dealership is made!
+            dealership = new Dealership(dealershipName, dealershipAddress, dealershipPhoneNum);
+
+
+            //Now we need to loop through each line of the rest of our file and make vehicles from it.
+            while ((readLineFromFile = bufferedReader.readLine()) != null) {
+
 
                 //Store each of our pieces from out inventory into variables
-                String[]inventoryParts = readLineFromFile.split("\\|");
+                String[] inventoryParts = readLineFromFile.split("\\|");
                 int VIN = Integer.parseInt(inventoryParts[0]);
                 int year = Integer.parseInt(inventoryParts[1]);
                 String make = inventoryParts[2];
@@ -40,46 +54,26 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(inventoryParts[7]);
 
                 //Using the information from above we are going to make a vehicle and add it to our dealership
-                Vehicle VehicleFromInventory = new Vehicle(VIN,year, make, model,vehicleType,color,odometer,price);
+                Vehicle vehicleFromInventory = new Vehicle(VIN, year, make, model, vehicleType, color, odometer, price);
 
+                //Add our vehicle to our inventory
+                dealership.addVehicle(vehicleFromInventory);
+
+                bufferedReader.close();
             }
-        }catch(Exception e){
+
+        } catch (Exception e) {
             return null;
         }
 
-
-
-        try{
-
-            FileReader fileReader = new FileReader("inventory.csv");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            String readTopLineFromFile;
-
-            //Now we need to loop through ONLY the 1st line of my file
-            while((readTopLineFromFile = bufferedReader.readLine()) !=null){
-                String[]dealershipInfoParts = readTopLineFromFile.split("\\|");
-                String dealershipName = dealershipInfoParts[0];
-                String dealershipAddress = dealershipInfoParts[1];
-                String dealershipPhoneNum = dealershipInfoParts[2];
-
-                Dealership dealership = new Dealership(dealershipName,dealershipAddress, dealershipPhoneNum);
-
-                
-            }
-
-
-        }
-        catch(Exception e){
-            return null;
-        }
-
-
+        //return our dealership
+        return dealership;
     }
+
 
     //Saves the dealership so when we open our program again the data is still there.
     public Dealership saveDealership(){
-
+        return null;
     }
 
 }

@@ -51,10 +51,8 @@ public class Dealership {
     //METHODS
 
     //ADD OR REMOVE VEHICLE
-    public void addVehicle(int VIN,int year,String make,String model,String vehicleType,String color,int odometer,double price){
-        //The User has sent the information of the vehicle they would like to add.
-        Vehicle newVehicle = new Vehicle(VIN, year, make, model, vehicleType, color, odometer, price);
-        inventory.add(newVehicle);
+    public void addVehicle(Vehicle vehicle){
+        inventory.add(vehicle);
     }
 
     public void remove(){
