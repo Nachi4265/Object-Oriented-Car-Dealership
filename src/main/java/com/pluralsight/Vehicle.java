@@ -4,6 +4,8 @@ public class Vehicle {
 
     //Private class variables
     private int VIN;
+
+
     private int year;
     private String make;
     private String model;
@@ -93,5 +95,18 @@ public class Vehicle {
     }
 
     //todo: to string
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "VIN=" + VIN +
+                ", year=" + year +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", color='" + color + '\'' +
+                ", odometer=" + odometer +
+                ", price=" + price +
+                '}';
+    }
 
 }

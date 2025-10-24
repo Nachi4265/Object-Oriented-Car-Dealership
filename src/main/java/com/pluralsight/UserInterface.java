@@ -1,9 +1,13 @@
 package com.pluralsight;
 
+import javax.swing.event.DocumentEvent;
+
 public class UserInterface {
 
-
+    //Class level variable so all methods can access it
     Dealership dealership;
+
+
 
     //User Interface Constructor that should get our dealership
     public UserInterface(){
@@ -12,21 +16,19 @@ public class UserInterface {
         //Create an instance of file manager
         DealershipFileManager dealFileManager = new DealershipFileManager();
 
-        //Get the dealership.
-        dealFileManager.getDealership();
-
-
+        //Our Class level variable is assigned to our Dealership File Manager which gets our dealership info
+        this.dealership =  dealFileManager.getDealership();
     }
 
 
 
-
+    //How our user menu is display
     public void display(){
 
-        Dealership dealership;
 
         while (true){
             String mainMenu = """
+            ===================| MENU |======================
             1 - Find vehicles within a price range\n
             2 - Find vehicles by make / model\n
             3 - Find vehicles by year range\n
@@ -80,10 +82,26 @@ public class UserInterface {
 
 
 
+    //a private displayVehicles() helper method.  Because you will be
+    //displaying many different lists of vehicles, it makes sense to have a helper
+    //method that displays the list and can be called from all of the get-vehicles
+    //type methods.  This method should have a parameter that is passed in
+    //containing the vehicles to list.  Within the method, create a loop and
+    //display the vehicles!
+
+    private void displayVehiclesHelper(Vehicle vehicleToList){
+        for(Vehicle v : this.dealership.getAllVehicles()){}
+    }
+
+
+
 
 
     //METHODS TO GET REQUEST FROM USER.
     private void processGetByPriceRequest() {
+       for(Vehicle v : this.dealership.getAllVehicles()){
+
+       }
     }
 
     private void processGetByMakeModelRequest() {

@@ -17,7 +17,7 @@ public class DealershipFileManager {
     //create and return that dealership
     public Dealership getDealership() {
 
-        Dealership dealership = null;
+        Dealership dealershipFromFile = null;
 
         //first lets read from our file
         try {
@@ -36,7 +36,7 @@ public class DealershipFileManager {
 
             //Our dealership is made!
             //Our name , Address and phone number are then passed into it.
-            dealership = new Dealership(dealershipName, dealershipAddress, dealershipPhoneNum);
+            dealershipFromFile = new Dealership(dealershipName, dealershipAddress, dealershipPhoneNum);
 
 
             //Now we need to loop through each line of the rest of our file and make vehicles from it.
@@ -58,7 +58,7 @@ public class DealershipFileManager {
                 Vehicle vehicleFromInventory = new Vehicle(VIN, year, make, model, vehicleType, color, odometer, price);
 
                 //Add our vehicle to our inventory
-                dealership.addVehicle(vehicleFromInventory);
+                dealershipFromFile.addVehicle(vehicleFromInventory);
 
 
             }
@@ -68,7 +68,7 @@ public class DealershipFileManager {
         }
 
         //return our dealership
-        return dealership;
+        return dealershipFromFile;
     }
 
 
