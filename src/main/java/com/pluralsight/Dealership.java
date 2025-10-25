@@ -92,30 +92,59 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesByMakeModel(String make , String model){
-        ArrayList<Vehicle> MakeModelResult = new ArrayList<>();
+        ArrayList<Vehicle> makeModelResult = new ArrayList<>();
 
         for(Vehicle vehicle: inventory){
             if(Objects.equals(vehicle.getMake(), make) && Objects.equals(vehicle.getModel(), model)){
-                MakeModelResult.add(vehicle);
+                makeModelResult.add(vehicle);
             }
         }
-        return MakeModelResult;
+        return makeModelResult;
     }
 
-    public ArrayList<Vehicle> getVehiclesByYear(String year){
-        return null;
+    public ArrayList<Vehicle> getVehiclesByYear(int minYear,int maxYear){
+        ArrayList<Vehicle>yearResults = new ArrayList<>();
+
+        for(Vehicle vehicle : inventory){
+            if(vehicle.getYear() >= minYear && vehicle.getYear() <= maxYear){
+                yearResults.add(vehicle);
+            }
+        }
+        return yearResults;
     }
 
     public ArrayList<Vehicle> getVehiclesByColor(String color){
-        return null;
+        ArrayList<Vehicle> colorResult = new ArrayList<>();
+
+        for(Vehicle vehicle: inventory){
+            if(vehicle.getColor().equals(color)){
+                colorResult.add(vehicle);
+            }
+        }
+        return colorResult;
     }
 
     public ArrayList<Vehicle> getVehiclesByMileage(int minMiles, int maxMiles ){
-        return null;
+        ArrayList<Vehicle> mileageResult = new ArrayList<>();
+
+        for(Vehicle vehicle: inventory){
+            if(vehicle.getOdometer() >= minMiles && vehicle.getOdometer() <= maxMiles){
+                 mileageResult.add(vehicle);
+            }
+        }
+         return mileageResult;
     }
 
     public ArrayList<Vehicle> getVehiclesByType(String vehicleType){
-        return null;
+
+        ArrayList<Vehicle>vehiclesTypeResult = new ArrayList<>();
+
+        for (Vehicle vehicle: inventory){
+            if(vehicle.getVehicleType().contains(vehicleType)){
+                vehiclesTypeResult.add(vehicle);
+            }
+        }
+        return vehiclesTypeResult;
     }
 
 }

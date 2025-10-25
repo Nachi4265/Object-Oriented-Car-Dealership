@@ -129,24 +129,47 @@ public class UserInterface {
 
     private void processGetByYearRequest() {
         System.out.println("What is the year you are looking for?");
-        String year = InputCollector.promptForString("Enter Year (YYYY)");
+        int minYear = InputCollector.promptForInt("Enter Minimum Year (YYYY)");
+        int maxYear = InputCollector.promptForInt("Enter Maximum Year (YYYY)");
 
-        ArrayList<Vehicle>vehiclesByYear = dealership.getVehiclesByYear(year);
+        ArrayList<Vehicle>vehiclesByYear = dealership.getVehiclesByYear(minYear,maxYear);
         displayVehiclesHelper(vehiclesByYear);
     }
 
     private void processGetByColorRequest() {
-    }
+        System.out.println("What vehicle color you are looking for?");
+        String color = InputCollector.promptForString("Enter color");
+
+        ArrayList<Vehicle>vehiclesByColor = dealership.getVehiclesByColor(color);
+        displayVehiclesHelper(vehiclesByColor);
+
+    }//todo add ignore case
 
     private void processGetByMileageRequest() {
+        System.out.println("What vehicle mileage you are looking for?");
+        int minMileage = InputCollector.promptForInt("Enter minimum mileage");
+        int maxMileage = InputCollector.promptForInt("Enter maximum mileage");
+
+        ArrayList<Vehicle>vehiclesByMileage = dealership.getVehiclesByMileage(minMileage, maxMileage);
+        displayVehiclesHelper(vehiclesByMileage);
     }
 
     private void processGetByVehicleTypeRequest() {
+        System.out.println("What Type of vehicle are you searching for?");
+        String vehicleType = InputCollector.promptForString("Enter vehicle type");
+
+        ArrayList<Vehicle>vehiclesByType = dealership.getVehiclesByType(vehicleType);
+        displayVehiclesHelper(vehiclesByType);
     }
+
+
 
     private void processGetByGetAllVehicleRequest() {
+       displayVehiclesHelper(dealership.getAllVehicles());
     }
 
+
+    //Add and remove request
     private void processAddVehicleRequest() {
     }
 
