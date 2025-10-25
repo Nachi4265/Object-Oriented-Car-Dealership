@@ -171,6 +171,19 @@ public class UserInterface {
 
     //Add and remove request
     private void processAddVehicleRequest() {
+        int VIN  = InputCollector.promptForInt("What is the vehicle VIN number");
+        int year = InputCollector.promptForInt("What is the Year of your vehicle");
+        String make = InputCollector.promptForString("What is the vehicle make?");
+        String model = InputCollector.promptForString("What is the vehicle model?");
+        String vehicleType = InputCollector.promptForString("What is the vehicle type");
+        String color = InputCollector.promptForString("What is the color of the vehicle");
+        int odometer = InputCollector.promptForInt("What is the mileage of the vehicle");
+        double price = InputCollector.promptForDouble("What is you asking price for the vehicle");
+
+        Vehicle vehicleToAdd = new Vehicle(VIN,year,make,model,vehicleType,color,odometer,price);
+        dealership.addVehicle(vehicleToAdd)
+        ;
+        //Dealership file manager needs to write.
     }
 
     private void processRemoveVehicleRequest() {
