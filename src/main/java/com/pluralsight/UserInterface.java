@@ -7,6 +7,7 @@ public class UserInterface {
 
     //Class level variable so all methods can access it
     Dealership dealership;
+    DealershipFileManager dealershipFileManager;
 
 
 
@@ -15,10 +16,10 @@ public class UserInterface {
         //When a user interface is made it should load our dealership so our information is ready.
 
         //Create an instance of file manager
-        DealershipFileManager dealFileManager = new DealershipFileManager();
+         this.dealershipFileManager = new DealershipFileManager();
 
         //Our Class level variable is assigned to our Dealership File Manager which gets our dealership info
-        this.dealership =  dealFileManager.getDealership();
+        this.dealership =  dealershipFileManager.getDealership();
     }
 
 
@@ -73,6 +74,7 @@ public class UserInterface {
                     break;
                 case 9:
                     processRemoveVehicleRequest();
+                    break;
                 case 99:
                     System.exit(0);
                     break;
@@ -186,11 +188,28 @@ public class UserInterface {
         DealershipFileManager dealershipFileManager = new DealershipFileManager();
         dealershipFileManager.saveDealership(dealership);
 
-        //Dealership file manager needs to write.
     }
 
     private void processRemoveVehicleRequest() {
 
+        //Put in the information of the vehicle we want to remove
+        int VIN  = InputCollector.promptForInt("What is the vehicle VIN number");
+
+        boolean found = false;
+
+        for(Vehicle v : dealership.getAllVehicles()){
+            if(VIN == v.getVIN()){
+                found = true;
+                dealership.remove(v);
+                System.out.println("Vehicle Removed!");
+                this.dealershipFileManager.saveDealership(dealership);
+                break;
+            }
+        }
+
+        if(found == false){
+                System.out.println("Could not find that Vehicles VIN");
+        }
     }
 
 }
