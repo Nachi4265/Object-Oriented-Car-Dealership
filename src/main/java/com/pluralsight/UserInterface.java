@@ -181,11 +181,15 @@ public class UserInterface {
         double price = InputCollector.promptForDouble("What is you asking price for the vehicle");
 
         Vehicle vehicleToAdd = new Vehicle(VIN,year,make,model,vehicleType,color,odometer,price);
-        dealership.addVehicle(vehicleToAdd)
-        ;
+        dealership.addVehicle(vehicleToAdd);
+
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager.saveDealership(dealership);
+
         //Dealership file manager needs to write.
     }
 
     private void processRemoveVehicleRequest() {
+
     }
 }

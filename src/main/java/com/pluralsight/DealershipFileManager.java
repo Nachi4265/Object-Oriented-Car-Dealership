@@ -1,7 +1,9 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class DealershipFileManager {
@@ -73,8 +75,28 @@ public class DealershipFileManager {
 
 
     //Saves the dealership so when we open our program again the data is still there.
-    public Dealership saveDealership(){
-        return null;
+    public void saveDealership(Dealership dealership){
+
+        try{
+            FileWriter fileWriter = new FileWriter("inventory.csv");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            //Write the Dealership Info
+            String dealershipInfo = getDealership().getName() + " | " + getDealership().getAddress() + " | " + getDealership().getPhone();
+            bufferedWriter.write(dealershipInfo);
+
+
+            for( Vehicle v : dealership.getAllVehicles()){
+                bufferedWriter.newLine();
+                bufferedWriter.write(v.getVIN() + " | " + v.getYear() +" | " + v.getMake() + " | " + v.getModel() + " | " + v.getVehicleType() + " | " + v.getColor() + " | " + v.getOdometer() + " | "+ v.getPrice());
+            }
+            bufferedWriter.close();
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }
