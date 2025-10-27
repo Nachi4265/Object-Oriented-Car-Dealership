@@ -28,8 +28,10 @@ public class DealershipFileManager {
 
 
             //Read the first line of my file and make a dealership from it.
+
             String readLineFromFile;
             readLineFromFile = bufferedReader.readLine();
+
 
             String[] dealershipInfoParts = readLineFromFile.split("\\|");
             String dealershipName = dealershipInfoParts[0];
@@ -62,7 +64,6 @@ public class DealershipFileManager {
                 //Add our vehicle to our inventory
                 dealershipFromFile.addVehicle(vehicleFromInventory);
 
-
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -82,16 +83,27 @@ public class DealershipFileManager {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             //Write the Dealership Info
-            String dealershipInfo = getDealership().getName() + " | " + getDealership().getAddress() + " | " + getDealership().getPhone();
+            String dealershipInfo =
+                            dealership.getName()
+                    + "|" + dealership.getAddress()
+                    + "|" + dealership.getPhone();
+
             bufferedWriter.write(dealershipInfo);
 
-
-            for( Vehicle v : dealership.getAllVehicles()){
-                bufferedWriter.newLine();
-                bufferedWriter.write(v.getVIN() + " | " + v.getYear() +" | " + v.getMake() + " | " + v.getModel() + " | " + v.getVehicleType() + " | " + v.getColor() + " | " + v.getOdometer() + " | "+ v.getPrice());
+            if(dealership.getAllVehicles()!=null){
+                for( Vehicle v : dealership.getAllVehicles()){
+                    bufferedWriter.newLine();
+                    bufferedWriter.write(v.getVIN()
+                            + "|" + v.getYear()
+                            + "|" + v.getMake()
+                            + "|" + v.getModel()
+                            + "|" + v.getVehicleType()
+                            + "|" + v.getColor()
+                            + "|" + v.getOdometer()
+                            + "|"+ v.getPrice());
+                }
             }
             bufferedWriter.close();
-
         }
         catch(Exception e){
             e.printStackTrace();

@@ -94,7 +94,6 @@ public class Vehicle {
         this.price = price;
     }
 
-    //todo: to string
     @Override
     public String toString() {
         return "Vehicle{" +
